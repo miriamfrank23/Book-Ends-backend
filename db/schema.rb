@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_055223) do
+ActiveRecord::Schema.define(version: 2018_11_22_072509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 2018_11_22_055223) do
     t.string "title"
     t.string "description"
     t.float "average_rating"
-    t.string "authors"
     t.integer "number_of_ratings"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "thumbnail"
+    t.string "authors", default: [], array: true
   end
 
   create_table "comments", force: :cascade do |t|
