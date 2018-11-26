@@ -8,12 +8,34 @@
 
 p 'start seeding'
 
-User.create(first_name: 'charlie', last_name: 'russo', email: 'hi@hi.com', password: 'charlie123')
 
-User.create(first_name: 'ruth', last_name: 'pelham', email: 'hi@hi.com', password: 'ruth123')
+def add_books()
+  index = 0
+  while index <= 200
+    response = RestClient.get("https://www.googleapis.com/books/v1/volumes?q=subject:mystery&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0SYXUnucBkyzuia9nVTRDDUzdbs")
+    book = JSON.parse(response)
+    Book.create(title: book['items'][0]['volumeInfo']['title'],
+    description: book['items'][0]['volumeInfo']['description'],
+    average_rating: book['items'][0]['volumeInfo']['averageRating'],
+    number_of_ratings: book['items'][0]['volumeInfo']['ratingsCount'],
+    thumbnail: book['items'][0]['volumeInfo']['imageLinks']['thumbnail'],
+    date_published: book['items'][0]['volumeInfo']['publishedDate'],
+    publisher: book['items'][0]['volumeInfo']['publisher'],
+    subtitle: book['items'][0]['volumeInfo']['subtitle'],
+    page_count: book['items'][0]['volumeInfo']['pageCount'],
+    authors:
+    book['items'][0]['volumeInfo']['authors']
+    )
+    index += 1
+  end
+end
 
-Book.create(title: 'the book', description: 'a mystery book', average_rating: 4.5, number_of_ratings: 100, authors: 'jordan farkas')
+add_books()
 
-Comment.create(book_id: 1, user_id: 1, text: 'jordan farkas is cool')
+# User.create(first_name: 'charlie', last_name: 'russo', email: 'hi@hi.com', password: 'charlie123')
+#
+# User.create(first_name: 'ruth', last_name: 'pelham', email: 'hi@hi.com', password: 'ruth123')
+#
+# Comment.create(book_id: 1, user_id: 1, text: 'jordan farkas is cool')
 
 p 'end seeding'
