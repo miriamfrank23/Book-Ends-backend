@@ -2,7 +2,8 @@ class Api::V1::CommentsController < ApplicationController
     before_action :set_comment, only: [:show, :update, :destroy]
 
   def index
-     @comments = Comment.all
+     @comments = Comment.where('book_id = ?', params[:book_id])
+     @comments = Comment.where('user_id = ?', params[:user_id])
      render json: @comments, status: :ok
    end
 
