@@ -3,7 +3,8 @@ class Api::V1::CommentsController < ApplicationController
 
   def index
      @comments = Comment.where('book_id = ?', params[:book_id])
-     @comments = Comment.where('user_id = ?', params[:user_id])
+     # @comments = Comment.where('user_id = ?', params[:user_id])
+     # need to figure out how to make book and user work      
      render json: @comments, status: :ok
    end
 

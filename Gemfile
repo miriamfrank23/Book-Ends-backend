@@ -48,3 +48,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'active_model_serializers'
 
 gem 'rest-client'
+
+# pagination
+gem 'will_paginate', '~> 3.1.0'
