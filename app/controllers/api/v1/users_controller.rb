@@ -8,10 +8,14 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # POST /users
-  # def create
-  #  @user = User.create!(user_params)
-  #  render json: @user, status: :created
-  # end
+  def create
+    @user = User.create(user_params)
+      if @user.valid?
+       render json: { user: UserSerializer.new(@user) }, status: :created
+      else
+       render json: { error: 'failed to create user' }, status: :not_acceptable
+    end
+  end
 
   # GET /users/:id
   def show
@@ -32,10 +36,9 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-  # def user_params
-  #  # whitelist params
-  #  params.permit(:text, :user_id, :book_id)
-  # end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
+  end
 
   def set_user
    @user = User.find(params[:id])
