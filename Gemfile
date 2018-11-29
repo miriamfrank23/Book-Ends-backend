@@ -51,3 +51,6 @@ gem 'rest-client'
 
 # pagination
 gem 'will_paginate', '~> 3.1.0'
+
+# jwt
+gem "jwt", "~> 2.1"
