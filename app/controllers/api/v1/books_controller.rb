@@ -1,6 +1,6 @@
 class Api::V1::BooksController < ApplicationController
-  skip_before_action :authorized
-  before_action :set_book, only: [:show, :update, :destroy]
+  # skip_before_action :authorized
+  before_action :set_book, only: [:show]
 
 def index
    @books = Book.all
@@ -31,10 +31,10 @@ def index
  # end
 
  # DELETE /books/:id
- def destroy
-   @book.destroy
-   head :no_content
- end
+ # def destroy
+ #   @book.destroy
+ #   head :no_content
+ # end
 
  private
 

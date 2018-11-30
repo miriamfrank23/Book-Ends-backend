@@ -10,7 +10,7 @@ p 'start seeding'
 
 
 def add_books()
-  index = 
+  index =
   while index <=
     response = RestClient.get("https://www.googleapis.com/books/v1/volumes?q=inauthor:
 NATSUO+KIRINO&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0SYXUnucBkyzuia9nVTRDDUzdbs")
@@ -39,10 +39,5 @@ end
 
 add_books()
 
-# User.create(first_name: 'charlie', last_name: 'russo', email: 'hi@hi.com', password: 'charlie123')
-#
-# User.create(first_name: 'ruth', last_name: 'pelham', email: 'hi@hi.com', password: 'ruth123')
-#
-# Comment.create(book_id: 1, user_id: 1, text: 'jordan farkas is cool')
 
 p 'end seeding'
