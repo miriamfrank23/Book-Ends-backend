@@ -1,5 +1,5 @@
 class Api::V1::BooksController < ApplicationController
-  # skip_before_action :authorized
+  skip_before_action :authorized, only: [:index]
   before_action :set_book, only: [:show]
 
 def index
