@@ -31,16 +31,16 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # PUT /users/:id
-  # def update
-  #  @user.update(user_params)
-  #  head :no_content
-  # end
+  def update
+  @user.update(user_params)
+   render json: @user, status: :ok
+  end
 
   # DELETE /users/:id
-  def destroy
-   @user.destroy
-   head :no_content
-  end
+  # def destroy
+  #  @user.destroy
+  #  head :no_content
+  # end
 
   private
 
