@@ -24,7 +24,8 @@ class Api::V1::CommentsController < ApplicationController
    # PUT /comments/:id
    def update
      @comment.update(comment_params)
-     head :no_content
+     # head :no_content
+     render json: @comment, status: :ok
    end
 
    # DELETE /comments/:id
