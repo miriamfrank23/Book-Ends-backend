@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :wish_books
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
@@ -23,6 +24,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :user_books
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :wish_books
     end
   end
 

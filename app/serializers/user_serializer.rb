@@ -3,5 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :comments
   has_many :user_books
+  has_many :wish_books
 
 end
