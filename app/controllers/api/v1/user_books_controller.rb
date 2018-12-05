@@ -1,10 +1,10 @@
-class UserBooksController < ApplicationController
+class Api::V1::UserBooksController < ApplicationController
+  skip_before_action :authorized, only: [:index, :show]
   before_action :set_user_book, only: [:show, :update, :destroy]
 
   # GET /user_books
   def index
     @user_books = UserBook.all
-
     render json: @user_books
   end
 
