@@ -1,14 +1,16 @@
 class Api::V1::BooksController < ApplicationController
-  before_action :set_book, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index]
+  before_action :set_book, only: [:show]
 
 def index
-   # @books = Book.all
-   @books = Book.paginate(:page => params[:page])
-   render json: {
-     books: @books,
-     page: @books.current_page,
-     pages: @books.total_pages
-   }
+   @books = Book.all
+   render json: @books
+   # @books = Book.paginate(:page => params[:page])
+   # render json: {
+   #   books: @books,
+   #   page: @books.current_page,
+   #   pages: @books.total_pages
+   # }
  end
 
  # POST /books
@@ -29,10 +31,10 @@ def index
  # end
 
  # DELETE /books/:id
- def destroy
-   @book.destroy
-   head :no_content
- end
+ # def destroy
+ #   @book.destroy
+ #   head :no_content
+ # end
 
  private
 

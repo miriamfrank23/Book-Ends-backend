@@ -1,10 +1,12 @@
 class Api::V1::CommentsController < ApplicationController
+    # skip_before_action :authorized
     before_action :set_comment, only: [:show, :update, :destroy]
 
   def index
-     @comments = Comment.where('book_id = ?', params[:book_id])
+    @comments = Comment.all
+     # @comments = Comment.where('book_id = ?', params[:book_id])
      # @comments = Comment.where('user_id = ?', params[:user_id])
-     # need to figure out how to make book and user work      
+     # need to figure out how to make book and user work
      render json: @comments, status: :ok
    end
 
@@ -22,7 +24,8 @@ class Api::V1::CommentsController < ApplicationController
    # PUT /comments/:id
    def update
      @comment.update(comment_params)
-     head :no_content
+     # head :no_content
+     render json: @comment, status: :ok
    end
 
    # DELETE /comments/:id
