@@ -34,9 +34,9 @@ class Api::V1::WishBooksController < ApplicationController
   # end
 
   # DELETE /wish_books/1
-  # def destroy
-  #   @wish_book.destroy
-  # end
+  def destroy
+    @wish_book.destroy
+  end
 
   private
 

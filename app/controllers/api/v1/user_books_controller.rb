@@ -34,9 +34,9 @@ class Api::V1::UserBooksController < ApplicationController
   # end
 
   # DELETE /user_books/1
-  # def destroy
-  #   @user_book.destroy
-  # end
+  def destroy
+    @user_book.destroy
+  end
 
   private
 
