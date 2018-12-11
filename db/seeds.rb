@@ -10,7 +10,7 @@ p 'start seeding'
 
 
 def add_tana_french_books()
-  index =
+  index = 0
   while index <= 10
     response = RestClient.get("https://www.googleapis.com/books/v1/volumes?q=inauthor:
 tana+french&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0SYXUnucBkyzuia9nVTRDDUzdbs")
