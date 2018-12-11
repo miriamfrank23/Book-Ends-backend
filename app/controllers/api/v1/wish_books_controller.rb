@@ -1,4 +1,4 @@
-class Api::V1::WishBooksController < ApplicationController
+class WishBooksController < ApplicationController
   skip_before_action :authorized, only: [:index, :show]
   before_action :set_wish_book, only: [:show, :update, :destroy]
 
