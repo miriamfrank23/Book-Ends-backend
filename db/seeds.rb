@@ -9,11 +9,11 @@
 p 'start seeding'
 
 
-def add_books()
+def add_tana_french_books()
   index =
-  while index <=
+  while index <= 10
     response = RestClient.get("https://www.googleapis.com/books/v1/volumes?q=inauthor:
-NATSUO+KIRINO&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0SYXUnucBkyzuia9nVTRDDUzdbs")
+tana+french&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0SYXUnucBkyzuia9nVTRDDUzdbs")
     book = JSON.parse(response)
       # byebug
       if book['items'][0]['volumeInfo']['title'] && book['items'][0]['volumeInfo']['description'] && book['items'][0]['volumeInfo']['ratingsCount'] && book['items'][0]['volumeInfo']['imageLinks']['thumbnail'] &&
@@ -37,7 +37,7 @@ NATSUO+KIRINO&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0
   end
 end
 
-add_books()
+add_tana_french_books()
 
 
 p 'end seeding'
