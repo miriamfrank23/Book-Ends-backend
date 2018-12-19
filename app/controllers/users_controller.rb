@@ -3,9 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def profile
-    # byebug
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
-
   end
 
 
