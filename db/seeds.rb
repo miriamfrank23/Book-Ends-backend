@@ -17,7 +17,7 @@ tana+french&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0SY
     book = JSON.parse(response)
       # byebug
       if book['items'][0]['volumeInfo']['title'] && book['items'][0]['volumeInfo']['description'] && book['items'][0]['volumeInfo']['ratingsCount'] && book['items'][0]['volumeInfo']['imageLinks']['thumbnail'] &&
-      Book.find_by_title(book['items'][0]['volumeInfo']['title']).nil?
+      Book.find_by(title: book['items'][0]['volumeInfo']['title']).nil?
         Book.create(title: book['items'][0]['volumeInfo']['title'],
         description: book['items'][0]['volumeInfo']['description'],
         average_rating: book['items'][0]['volumeInfo']['averageRating'],
@@ -45,7 +45,7 @@ robert+galbraith&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNW
     book = JSON.parse(response)
       # byebug
       if book['items'][0]['volumeInfo']['title'] && book['items'][0]['volumeInfo']['description'] && book['items'][0]['volumeInfo']['ratingsCount'] && book['items'][0]['volumeInfo']['imageLinks']['thumbnail'] &&
-      Book.find_by_title(book['items'][0]['volumeInfo']['title']).nil?
+      Book.find_by(title: book['items'][0]['volumeInfo']['title']).nil?
         Book.create(title: book['items'][0]['volumeInfo']['title'],
         description: book['items'][0]['volumeInfo']['description'],
         average_rating: book['items'][0]['volumeInfo']['averageRating'],
@@ -73,7 +73,7 @@ gillian+flynn&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0
     book = JSON.parse(response)
       # byebug
       if book['items'][0]['volumeInfo']['title'] && book['items'][0]['volumeInfo']['description'] && book['items'][0]['volumeInfo']['ratingsCount'] && book['items'][0]['volumeInfo']['imageLinks']['thumbnail'] &&
-      Book.find_by_title(book['items'][0]['volumeInfo']['title']).nil?
+      Book.find_by(title: book['items'][0]['volumeInfo']['title']).nil?
         Book.create(title: book['items'][0]['volumeInfo']['title'],
         description: book['items'][0]['volumeInfo']['description'],
         average_rating: book['items'][0]['volumeInfo']['averageRating'],
@@ -101,7 +101,35 @@ agatha+christie&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWr
     book = JSON.parse(response)
       # byebug
       if book['items'][0]['volumeInfo']['title'] && book['items'][0]['volumeInfo']['description'] && book['items'][0]['volumeInfo']['ratingsCount'] && book['items'][0]['volumeInfo']['imageLinks']['thumbnail'] &&
-      Book.find_by_title(book['items'][0]['volumeInfo']['title']).nil?
+      Book.find_by(title: book['items'][0]['volumeInfo']['title']).nil?
+        Book.create(title: book['items'][0]['volumeInfo']['title'],
+        description: book['items'][0]['volumeInfo']['description'],
+        average_rating: book['items'][0]['volumeInfo']['averageRating'],
+        number_of_ratings: book['items'][0]['volumeInfo']['ratingsCount'],
+        thumbnail: book['items'][0]['volumeInfo']['imageLinks']['thumbnail'],
+        date_published: book['items'][0]['volumeInfo']['publishedDate'],
+        publisher: book['items'][0]['volumeInfo']['publisher'],
+        subtitle: book['items'][0]['volumeInfo']['subtitle'],
+        page_count: book['items'][0]['volumeInfo']['pageCount'],
+        authors:
+        book['items'][0]['volumeInfo']['authors']
+        )
+        p book['items'][0]['volumeInfo']['title']
+        p book['items'][0]['volumeInfo']['ratingsCount']
+    end
+    index += 1
+  end
+end
+
+def add_sherlock_holmes_books()
+  index = 0
+  while index <= 20
+    response = RestClient.get("https://www.googleapis.com/books/v1/volumes?q=inauthor:
+arthur+conan+doyle&maxResults=1&langRestrict=en&startIndex=#{index}&key=AIzaSyBYNWrl0SYXUnucBkyzuia9nVTRDDUzdbs")
+    book = JSON.parse(response)
+      # byebug
+      if book['items'][0]['volumeInfo']['title'] && book['items'][0]['volumeInfo']['description'] && book['items'][0]['volumeInfo']['ratingsCount'] && book['items'][0]['volumeInfo']['imageLinks']['thumbnail'] &&
+      Book.find_by(title: book['items'][0]['volumeInfo']['title']).nil?
         Book.create(title: book['items'][0]['volumeInfo']['title'],
         description: book['items'][0]['volumeInfo']['description'],
         average_rating: book['items'][0]['volumeInfo']['averageRating'],
@@ -125,6 +153,18 @@ add_tana_french_books()
 add_agatha_christie_books()
 add_robert_galbraith_books()
 add_gillian_flynn_books()
+add_sherlock_holmes_books()
+
+Book.find_by(title: 'An Autobiography').destroy
+Book.find_by(title: 'Black Coffee').destroy
+Book.find_by(title: 'The Grownup').destroy
+Book.find_by(title: 'Dark Places - Gillian Flynn').destroy
+Book.find_by(title: 'The Silkworm (two-chapter extract)').destroy
+Book.find_by(title: 'Witness for the Prosecution').destroy
+Book.find_by(title: 'Sir Arthur Conan Doyle').destroy
+Book.find_by(title: 'Arthur Conan Doyle').destroy
+
+
 
 
 p 'end seeding'
